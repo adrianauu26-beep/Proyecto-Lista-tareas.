@@ -33,13 +33,13 @@ int main() {
 
         switch (opcion) {
             case 1:
-                // agregarTarea(tareas);
+                 agregarTarea(tareas);
                 break;
             case 2:
-                // mostrarTareas(tareas);
+                 mostrarTareas(tareas);
                 break;
             case 3:
-                // completarTarea(tareas);
+                 completarTarea(tareas);
                 break;
             case 4:
                 cout << "Saliendo del programa...\n";
@@ -85,15 +85,30 @@ void agregarTarea(vector<Tarea>& tareas) {
             cout << "[Completada]"
         } else {
             cout << "[Pendiente]"
-        }
+        
      cout << tareas[i].descripcion << endl;
          
      }
-     
-   
    }
 
 // Marca una tarea como completada
-// void completarTarea(vector<Tarea>& tareas) {
-// 
-// }
+ void completarTarea(vector<Tarea>& tareas) {
+     //Imprimir tareas
+     mostrarTareas(tarea);
+     
+     //Cambiar tarea.completada a true
+     
+     //¿Número de tarea a completar?
+     int numeroTarea;
+     cout << "Selecciones la tarea completada: ";
+     cin >> numeroTarea;
+     
+     if (numeroTarea < 1 or numeroTarea > tarea.size()){
+         cout << "Tarea inválida";
+         return;
+     }
+     
+     tareas[numeroTarea -1].completada = true;
+     cout << "Tarea completada correctamente" << endl;
+   
+}
