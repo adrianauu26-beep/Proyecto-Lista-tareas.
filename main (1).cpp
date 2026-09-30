@@ -10,7 +10,9 @@ struct Tarea {
     bool completada;
 };
 
+// Prototipos
 void agregarTarea(vector<Tarea>& tareas);
+void mostrarTareas(const vector<Tarea>& tareas);
 
 int main() {
     vector<Tarea> tareas;
@@ -34,6 +36,9 @@ int main() {
                 break;
 
             case 2:
+                mostrarTareas(tareas);
+                break;
+
             case 3:
             case 4:
                 cout << "Opcion en desarrollo.\n";
@@ -52,6 +57,7 @@ int main() {
     return 0;
 }
 
+// Agrega una tarea pendiente
 void agregarTarea(vector<Tarea>& tareas) {
     Tarea nueva;
 
@@ -67,4 +73,26 @@ void agregarTarea(vector<Tarea>& tareas) {
     tareas.push_back(nueva);
 
     cout << "Tarea agregada correctamente.\n";
+}
+
+// Muestra todas las tareas
+void mostrarTareas(const vector<Tarea>& tareas) {
+    cout << "\nTAREAS\n\n";
+
+    if (tareas.empty()) {
+        cout << "No hay tareas registradas.\n";
+        return;
+    }
+
+    for (size_t i = 0; i < tareas.size(); i++) {
+        cout << i + 1 << ". ";
+
+        if (tareas[i].completada) {
+            cout << "[Completada] ";
+        } else {
+            cout << "[Pendiente] ";
+        }
+
+        cout << tareas[i].descripcion << endl;
+    }
 }
