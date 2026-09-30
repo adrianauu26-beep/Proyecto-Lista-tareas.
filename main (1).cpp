@@ -13,6 +13,8 @@ struct Tarea {
 // Prototipos
 void agregarTarea(vector<Tarea>& tareas);
 void mostrarTareas(const vector<Tarea>& tareas);
+void completarTarea(vector<Tarea>& tareas);
+void eliminarTarea(vector<Tarea>& tareas);
 
 int main() {
     vector<Tarea> tareas;
@@ -40,8 +42,11 @@ int main() {
                 break;
 
             case 3:
+                eliminarTarea(tareas);
+                break;
+
             case 4:
-                cout << "Opcion en desarrollo.\n";
+                completarTarea(tareas);
                 break;
 
             case 5:
@@ -95,4 +100,50 @@ void mostrarTareas(const vector<Tarea>& tareas) {
 
         cout << tareas[i].descripcion << endl;
     }
+}
+
+// Marca una tarea como completada
+void completarTarea(vector<Tarea>& tareas) {
+    mostrarTareas(tareas);
+
+    if (tareas.empty()) {
+        return;
+    }
+
+    int numeroTarea;
+    cout << "Seleccione la tarea que desea completar: ";
+    cin >> numeroTarea;
+
+    if (numeroTarea < 1 ||
+        numeroTarea > static_cast<int>(tareas.size())) {
+        cout << "Tarea invalida.\n";
+        return;
+    }
+
+    tareas[numeroTarea - 1].completada = true;
+
+    cout << "Tarea completada correctamente.\n";
+}
+
+// Elimina una tarea
+void eliminarTarea(vector<Tarea>& tareas) {
+    mostrarTareas(tareas);
+
+    if (tareas.empty()) {
+        return;
+    }
+
+    int numeroTarea;
+    cout << "Seleccione la tarea que desea eliminar: ";
+    cin >> numeroTarea;
+
+    if (numeroTarea < 1 ||
+        numeroTarea > static_cast<int>(tareas.size())) {
+        cout << "Tarea invalida.\n";
+        return;
+    }
+
+    tareas.erase(tareas.begin() + numeroTarea - 1);
+
+    cout << "Tarea eliminada correctamente.\n";
 }
